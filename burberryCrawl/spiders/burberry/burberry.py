@@ -1,5 +1,7 @@
 import scrapy
 
+from burberryCrawl.spiders.burberry.extract import extract_clothes
+
 
 class BurberrySpider(scrapy.Spider):
     name = 'burberry'
@@ -7,4 +9,5 @@ class BurberrySpider(scrapy.Spider):
     start_urls = ['http://us.burberry.com/']
 
     def parse(self, response):
-        pass
+        for item in extract_clothes(response) or []:
+            yield item
