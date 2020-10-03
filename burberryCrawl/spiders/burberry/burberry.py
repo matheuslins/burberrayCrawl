@@ -1,6 +1,6 @@
 import scrapy
 
-from burberryCrawl.spiders.burberry.extract import extract_clothes
+from burberryCrawl.spiders.burberry.steps.extract import extract_clothes
 
 
 class BurberrySpider(scrapy.Spider):
@@ -8,7 +8,7 @@ class BurberrySpider(scrapy.Spider):
     allowed_domains = ['us.burberry.com']
     start_urls = ['http://us.burberry.com/']
     custom_settings = {
-        'DOWNLOAD_DELAY': 0.5,
+        'DOWNLOAD_DELAY': 0.5
     }
 
     def parse(self, response):

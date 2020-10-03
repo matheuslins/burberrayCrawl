@@ -1,0 +1,4 @@
+
+XPATHS_CLOTHES = {
+
+}

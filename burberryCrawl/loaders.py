@@ -24,7 +24,7 @@ class BaseLoader(ItemLoader):
                 kwargs.setdefault('re', re[field])
 
             self.add_xpath(field, *args, **kwargs)
-            if raw is True or raw and field in raw:
+            if raw and field in raw:
                 raw_value = self.get_xpath(args[0], Join())
                 if raw_value:
                     raw_fields[field] = self.get_xpath(args[0], Join())
