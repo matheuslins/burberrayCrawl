@@ -15,15 +15,13 @@ class BurberrySpider(scrapy.Spider):
 
     def parse(self, response):
         women_url = f"{self.start_urls[0]}/women"
-        start_url = self.start_urls[0]
         request = Request(
             url=women_url,
-            callback=self.parse_clothes,
-            cb_kwargs=dict(start_url=start_url)
+            callback=self.parse_clothes
         )
 
         yield request
 
-    def parse_clothes(self, response, start_url):
+    def parse_clothes(self, response):
         selector = Selector(response)
-        consult_clothes(start_url, selector)
+        consult_clothes(self.start_urls[0], selector)
