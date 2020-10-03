@@ -1,7 +1,7 @@
 from scrapy.loader import ItemLoader
 from scrapy.loader.processors import Join
 
-from burberryCrawl.items import ClothesItem
+from burberryCrawl.items import ProductItem
 from burberryCrawl import processors
 
 
@@ -29,14 +29,6 @@ class BaseLoader(ItemLoader):
                 if raw_value:
                     raw_fields[field] = self.get_xpath(args[0], Join())
 
-    def add_values(self, fields):
-        for field, args in fields.iteritems():
-            if not field or field.startswith('_'):
-                continue
-
-            args, kwargs = self.__resolve_args(args)
-            self.add_value(field, *args, **kwargs)
-
     @staticmethod
     def __resolve_args(args):
         kwargs = {}
@@ -47,5 +39,5 @@ class BaseLoader(ItemLoader):
         return args, kwargs
 
 
-class ClothesLoader(BaseLoader):
-    default_item_class = ClothesItem
+class ProductLoader(BaseLoader):
+    default_item_class = ProductItem

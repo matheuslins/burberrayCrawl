@@ -11,7 +11,8 @@ class BurberrySpider(scrapy.Spider):
     allowed_domains = ['us.burberry.com']
     start_urls = [START_URL]
     custom_settings = {
-        'DOWNLOAD_DELAY': 0.5
+        'DOWNLOAD_DELAY': 0.3,
+        'COOKIES_ENABLED': False
     }
 
     def parse(self, response):

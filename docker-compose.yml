@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    container_name: burberry-elastic
+    environment:
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - 9200:9200
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.9.2
+    container_name: burberry-kibana
+    ports:
+      - 5601:5601
+    depends_on:
+      ["elasticsearch"]
+
+  apm:
+    image: docker.elastic.co/apm/apm-server:7.9.2
+    container_name: burberry-apm
+    ports:
+      - 8200:8200
+    depends_on:
+      ["elasticsearch"]
+
+  splash:
+    image:  scrapinghub/splash
+    container_name: burberry-splash
+    ports:
+      - 8050:8050

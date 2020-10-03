@@ -1,5 +1,6 @@
 from scrapy.http import Request
 from scrapy import Selector
+from scrapy_splash import SplashRequest
 
 from burberryCrawl.spiders.burberry.constants.consult import CONSULT_XPATHS, START_URL
 from burberryCrawl.spiders.burberry.steps.extract import extract_product

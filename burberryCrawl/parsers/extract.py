@@ -11,7 +11,11 @@ def normalize_spaces(value):
 
 
 def parser_url_images(urls):
-    return [f"http:{url}" for url in urls]
+    parsed_urls = []
+    for url in urls:
+        url_spplited = url.split(',')[1].strip().split(' ')[0]
+        parsed_urls.append(f"http:{url_spplited}")
+    return parsed_urls
 
 
 def parser_description(descriptions):
