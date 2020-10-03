@@ -2,6 +2,7 @@ from scrapy import Selector
 
 from burberryCrawl.loaders import ProductLoader
 from burberryCrawl.spiders.burberry.constants.extract import XPATHS_PRODUCTS
+from burberryCrawl.parsers.extract import normalize_spaces
 
 
 def extract_product(response):
@@ -19,8 +20,8 @@ def load_variants(response):
 
     no_sizes = Selector(response).xpath(XPATHS_PRODUCTS['_no_sizes']).getall()
     sizes = Selector(response).xpath(XPATHS_PRODUCTS['_sizes']).getall()
-    price = Selector(response).xpath(XPATHS_PRODUCTS['_price']).extract_first()
-    color = Selector(response).xpath(XPATHS_PRODUCTS['color']).extract_first()
+    price = normalize_spaces(Selector(response).xpath(XPATHS_PRODUCTS['_price']).extract_first())
+    color = normalize_spaces(Selector(response).xpath(XPATHS_PRODUCTS['color']).extract_first())
 
     for size in sizes:
         variants.append({

@@ -13,8 +13,13 @@ def normalize_spaces(value):
 def parser_url_images(urls):
     parsed_urls = []
     for url in urls:
-        url_spplited = url.split(',')[1].strip().split(' ')[0]
-        parsed_urls.append(f"http:{url_spplited}")
+        if 'http' in url:
+            url = url.split("'")[1]
+        else:
+            split_url = url.split(',')[1].strip().split(' ')[0]
+            url = f"http:{split_url}"
+        parsed_urls.append(url)
+
     return parsed_urls
 
 

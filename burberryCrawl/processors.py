@@ -2,7 +2,7 @@ from pytz import unicode
 from six import string_types
 from w3lib.html import remove_tags
 
-from burberryCrawl import parsers
+from burberryCrawl.parsers.extract import normalize_spaces
 
 
 class DefaultInputProcessor:
@@ -24,7 +24,7 @@ class DefaultInputProcessor:
             unicode = lambda s: str(s)
             try:
                 cleared_value = unicode(remove_tags(value))
-                return parsers.normalize_spaces(cleared_value)
+                return normalize_spaces(cleared_value)
             except:
                 return value
         else:
