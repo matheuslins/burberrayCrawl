@@ -57,11 +57,11 @@ DOWNLOADER_MIDDLEWARES = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
 
-# Configure item pipelines
-# See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'burberryCrawl.pipelines.BurberrycrawlPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'burberryCrawl.pipelines.DuplicatesProductPipeline': 0,
+    'burberryCrawl.pipelines.BaseDBPipeline': 100,
+    'burberryCrawl.pipelines.ElasticSearchPipeline': 300
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -88,3 +88,7 @@ SPLASH_URL = config('SPLASH_URL', default='http://0.0.0.0:8050')
 DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
 HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 
+ES_HOST = config('ES_HOST', default='http://localhost:9200')
+ES_INDEX = config('ES_INDEX', default='burberry-products')
+SAVE_DB = config('SAVE_DB', default=True, cast=bool)
+BULK_SIZE = config('BULK_SIZE', cast=int, default=100)
