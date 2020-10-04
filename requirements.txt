@@ -2,3 +2,4 @@ Scrapy==2.3.0
 scrapy-splash==0.7.2
 python-decouple==3.3
 pytz==2020.1
+shub==2.12.0
