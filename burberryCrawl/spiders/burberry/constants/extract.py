@@ -3,10 +3,10 @@ from burberryCrawl.parsers.extract import parser_url_images, parser_description
 
 XPATHS_PRODUCTS = {
     'name': '//h1[@class="product-info-panel__title"]//span[1]/text() | //h1[contains(@class, "product-title")]/text()',
-    'description': ('//div[@class="description-modal__text-container"]//text()', parser_description),
+    'description': ('//div[@class="description-modal__text-container"]//text() | //h2[contains(., "Description")]/following-sibling::div[contains(@class, "details")]//text()',
+                    parser_description),
     'images': (
-        '//source[@media="(min-width:2560px)"]/@srcset | //source[@media="(min-width:2560px)"]/@data-srcset | '
-        '//div[contains(@class, "product-image-asset-content")]/@style',
+        '//source[@media="(min-width:2560px)"]/@srcset | //source[@media="(min-width:2560px)"]/@data-srcset | //div[contains(@class, "product-image-asset-content")]/@style',
         parser_url_images
     ),
     'color': '//span[@class="color-picker__label"]/text() | //div[@id="colour-picker-value"]//text()',
