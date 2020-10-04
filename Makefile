@@ -24,3 +24,6 @@ install:
 
 run:
 	scrapy crawl burberry
+
+run-docker:
+	docker-compose up

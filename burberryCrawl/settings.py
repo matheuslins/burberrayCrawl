@@ -90,5 +90,5 @@ HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 
 ES_HOST = config('ES_HOST', default='http://localhost:9200')
 ES_INDEX = config('ES_INDEX', default='burberry-products')
-SAVE_DB = config('SAVE_DB', default=True, cast=bool)
+SAVE_DB = config('SAVE_DB', default=False, cast=bool)
 BULK_SIZE = config('BULK_SIZE', cast=int, default=100)
